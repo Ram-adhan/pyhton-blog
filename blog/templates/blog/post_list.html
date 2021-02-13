@@ -1,3 +1,7 @@
+<!--
+    to load static file, include this tag on the very beginning
+-->
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,20 +9,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
     <title>Post List</title>
 </head>
 
 <body>
-    <div>
+    <div class="page-header">
         <h1>NEW POST AVAILABLE</h1>
     </div>
-    {% for post in posts %}
-    <div>
-        <h2>{{post.title}}</h2>
-        <p>published at: {{post.published_date}}</p>
-        <p>{{post.text|linebreaksbr}}</p>
+
+    <div class="content container">
+        <div class="row">
+            <div class="col-md-8">
+                {% for post in posts %}
+                <div class="post">
+                    <h2><a href="/">{{post.title}}</a></h2>
+                    <p>published at: {{post.published_date}}</p>
+                    <p>{{post.text|linebreaksbr}}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
-    {% endfor %}
+
 </body>
 
 </html>
